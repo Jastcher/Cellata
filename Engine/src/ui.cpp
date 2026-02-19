@@ -121,15 +121,6 @@ static inline void ControlWindow(UI *UI)
   ImGui::End();
 }
 
-static inline void PropertiesWindow(UI *UI)
-{
-  Simulator *s = UI->simulator.get();
-
-  ImGui::Begin("Properties");
-
-  ImGui::End();
-}
-
 void UI::Render(GLuint dataTexture)
 {
   StartFrame();

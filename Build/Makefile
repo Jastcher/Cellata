@@ -286,6 +286,30 @@ Engine/src/simulator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/Engine/src/simulator.cpp.s
 .PHONY : Engine/src/simulator.cpp.s
 
+Engine/src/storageBuffer.o: Engine/src/storageBuffer.cpp.o
+.PHONY : Engine/src/storageBuffer.o
+
+# target to build an object file
+Engine/src/storageBuffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.o
+.PHONY : Engine/src/storageBuffer.cpp.o
+
+Engine/src/storageBuffer.i: Engine/src/storageBuffer.cpp.i
+.PHONY : Engine/src/storageBuffer.i
+
+# target to preprocess a source file
+Engine/src/storageBuffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.i
+.PHONY : Engine/src/storageBuffer.cpp.i
+
+Engine/src/storageBuffer.s: Engine/src/storageBuffer.cpp.s
+.PHONY : Engine/src/storageBuffer.s
+
+# target to generate assembly for a file
+Engine/src/storageBuffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.s
+.PHONY : Engine/src/storageBuffer.cpp.s
+
 Engine/src/ui.o: Engine/src/ui.cpp.o
 .PHONY : Engine/src/ui.o
 
@@ -602,6 +626,9 @@ help:
 	@echo "... Engine/src/simulator.o"
 	@echo "... Engine/src/simulator.i"
 	@echo "... Engine/src/simulator.s"
+	@echo "... Engine/src/storageBuffer.o"
+	@echo "... Engine/src/storageBuffer.i"
+	@echo "... Engine/src/storageBuffer.s"
 	@echo "... Engine/src/ui.o"
 	@echo "... Engine/src/ui.i"
 	@echo "... Engine/src/ui.s"

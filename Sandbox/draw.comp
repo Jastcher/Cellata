@@ -7,6 +7,8 @@ layout(rgba8ui, binding = 0) uniform uimage2D imgOutput;
 uniform vec2 u_MousePos;  
 
 uniform float radius;      
+uniform int id;
+uniform int props;
 
 
 void main() {
@@ -16,7 +18,7 @@ void main() {
 
     if (dist <= radius) {
         imageStore(imgOutput, pixel_coords,
-                    uvec4(1u, 1u | 4u, 0u, 0u));
+                    uvec4(id, props, 0u, 0u));
     }
 }
 

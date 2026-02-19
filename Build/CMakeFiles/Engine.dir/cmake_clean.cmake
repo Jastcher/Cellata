@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Engine.dir/Engine/src/shader.cpp.o.d"
   "CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o"
   "CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o.d"
+  "CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.o"
+  "CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.o.d"
   "CMakeFiles/Engine.dir/Engine/src/ui.cpp.o"
   "CMakeFiles/Engine.dir/Engine/src/ui.cpp.o.d"
   "CMakeFiles/Engine.dir/Engine/src/window.cpp.o"
