@@ -1,0 +1,22 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D imgInput;
+layout(rgba8, binding = 1) uniform image2D imgOutput;
+
+
+void main() {
+    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+
+    uvec4 data = imageLoad(imgInput, id);
+
+    if (data.r == 1)
+    imageStore(imgOutput, id, vec4(1.0,0.0,0.0,1.0f));
+
+    else
+    imageStore(imgOutput, id, vec4(0.0,0.0,0.0,1.0));
+  
+}
+
+

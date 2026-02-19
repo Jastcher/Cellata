@@ -1,0 +1,4 @@
+/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles/Engine.dir
+/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles/Sandbox.dir
+/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles/edit_cache.dir
+/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles/rebuild_cache.dir
