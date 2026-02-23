@@ -263,6 +263,7 @@ CMakeFiles/Engine.dir/Engine/src/application.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/bits/basic_string.tcc \
   /usr/include/c++/15.2.1/bits/char_traits.h \
   /usr/include/c++/15.2.1/bits/charconv.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
   /usr/include/c++/15.2.1/bits/concept_check.h \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
@@ -294,6 +295,7 @@ CMakeFiles/Engine.dir/Engine/src/application.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
   /usr/include/c++/15.2.1/bits/postypes.h \
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
@@ -333,6 +335,7 @@ CMakeFiles/Engine.dir/Engine/src/application.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/cfloat \
+  /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/climits \
   /usr/include/c++/15.2.1/clocale \
   /usr/include/c++/15.2.1/cmath \
@@ -342,6 +345,7 @@ CMakeFiles/Engine.dir/Engine/src/application.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/ctime \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
@@ -367,6 +371,7 @@ CMakeFiles/Engine.dir/Engine/src/application.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/pstl/execution_defs.h \
   /usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
   /usr/include/c++/15.2.1/string \
@@ -690,6 +695,7 @@ CMakeFiles/Engine.dir/Engine/src/automaton.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/bits/basic_string.tcc \
   /usr/include/c++/15.2.1/bits/char_traits.h \
   /usr/include/c++/15.2.1/bits/charconv.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
   /usr/include/c++/15.2.1/bits/concept_check.h \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
@@ -721,6 +727,7 @@ CMakeFiles/Engine.dir/Engine/src/automaton.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
   /usr/include/c++/15.2.1/bits/postypes.h \
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
@@ -754,6 +761,7 @@ CMakeFiles/Engine.dir/Engine/src/automaton.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/cfloat \
+  /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/climits \
   /usr/include/c++/15.2.1/clocale \
   /usr/include/c++/15.2.1/cmath \
@@ -763,6 +771,7 @@ CMakeFiles/Engine.dir/Engine/src/automaton.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/ctime \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
@@ -784,6 +793,7 @@ CMakeFiles/Engine.dir/Engine/src/automaton.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/new \
   /usr/include/c++/15.2.1/ostream \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
   /usr/include/c++/15.2.1/string \
@@ -1361,6 +1371,7 @@ CMakeFiles/Engine.dir/Engine/src/dataTexture.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/bits/basic_string.tcc \
   /usr/include/c++/15.2.1/bits/char_traits.h \
   /usr/include/c++/15.2.1/bits/charconv.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
   /usr/include/c++/15.2.1/bits/concept_check.h \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
@@ -1387,6 +1398,7 @@ CMakeFiles/Engine.dir/Engine/src/dataTexture.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
   /usr/include/c++/15.2.1/bits/postypes.h \
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
@@ -1411,11 +1423,14 @@ CMakeFiles/Engine.dir/Engine/src/dataTexture.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/bits/version.h \
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
+  /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/clocale \
   /usr/include/c++/15.2.1/concepts \
   /usr/include/c++/15.2.1/cstddef \
+  /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/ctime \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
@@ -1431,9 +1446,11 @@ CMakeFiles/Engine.dir/Engine/src/dataTexture.cpp.o: /home/jastcher/Programming/c
   /usr/include/c++/15.2.1/iosfwd \
   /usr/include/c++/15.2.1/iostream \
   /usr/include/c++/15.2.1/istream \
+  /usr/include/c++/15.2.1/limits \
   /usr/include/c++/15.2.1/new \
   /usr/include/c++/15.2.1/ostream \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
   /usr/include/c++/15.2.1/string \
@@ -2144,8 +2161,10 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/bits/struct_mutex.h \
   /usr/include/bits/struct_rwlock.h \
   /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time.h \
   /usr/include/bits/time64.h \
   /usr/include/bits/timesize.h \
+  /usr/include/bits/timex.h \
   /usr/include/bits/types.h \
   /usr/include/bits/types/FILE.h \
   /usr/include/bits/types/__FILE.h \
@@ -2162,8 +2181,10 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/bits/types/mbstate_t.h \
   /usr/include/bits/types/sigset_t.h \
   /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/types/struct_itimerspec.h \
   /usr/include/bits/types/struct_timespec.h \
   /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/struct_tm.h \
   /usr/include/bits/types/time_t.h \
   /usr/include/bits/types/timer_t.h \
   /usr/include/bits/types/wint_t.h \
@@ -2184,6 +2205,7 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/bits/basic_string.tcc \
   /usr/include/c++/15.2.1/bits/char_traits.h \
   /usr/include/c++/15.2.1/bits/charconv.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
   /usr/include/c++/15.2.1/bits/concept_check.h \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
@@ -2204,6 +2226,7 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/bits/new_allocator.h \
   /usr/include/c++/15.2.1/bits/node_handle.h \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
   /usr/include/c++/15.2.1/bits/postypes.h \
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
@@ -2235,6 +2258,7 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/cfloat \
+  /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/climits \
   /usr/include/c++/15.2.1/clocale \
   /usr/include/c++/15.2.1/cmath \
@@ -2244,6 +2268,7 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/ctime \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/debug/assertions.h \
   /usr/include/c++/15.2.1/debug/debug.h \
@@ -2258,6 +2283,7 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/c++/15.2.1/limits \
   /usr/include/c++/15.2.1/new \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
   /usr/include/c++/15.2.1/string \
   /usr/include/c++/15.2.1/string_view \
   /usr/include/c++/15.2.1/tr1/bessel_function.tcc \
@@ -2301,6 +2327,7 @@ CMakeFiles/Engine.dir/Engine/src/simulator.cpp.o: /home/jastcher/Programming/cpp
   /usr/include/sys/cdefs.h \
   /usr/include/sys/select.h \
   /usr/include/sys/types.h \
+  /usr/include/time.h \
   /usr/include/wchar.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/float.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/limits.h \
@@ -2315,17 +2342,47 @@ CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.o: /home/jastcher/Programming
   /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/GLFW/glfw3.h \
   /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/KHR/khrplatform.h \
   /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glad/glad.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/long-double.h \
   /usr/include/bits/stdint-intn.h \
   /usr/include/bits/stdint-least.h \
   /usr/include/bits/stdint-uintn.h \
+  /usr/include/bits/time.h \
   /usr/include/bits/time64.h \
   /usr/include/bits/timesize.h \
+  /usr/include/bits/timex.h \
   /usr/include/bits/types.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/struct_itimerspec.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/struct_tm.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
   /usr/include/bits/typesizes.h \
   /usr/include/bits/wchar.h \
   /usr/include/bits/wordsize.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
+  /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
+  /usr/include/c++/15.2.1/bits/version.h \
+  /usr/include/c++/15.2.1/chrono \
+  /usr/include/c++/15.2.1/cstdint \
+  /usr/include/c++/15.2.1/ctime \
+  /usr/include/c++/15.2.1/ext/numeric_traits.h \
+  /usr/include/c++/15.2.1/ext/type_traits.h \
+  /usr/include/c++/15.2.1/limits \
+  /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
+  /usr/include/c++/15.2.1/type_traits \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++config.h \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/cpu_defines.h \
+  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/os_defines.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/gnu/stubs-64.h \
@@ -2333,6 +2390,7 @@ CMakeFiles/Engine.dir/Engine/src/storageBuffer.cpp.o: /home/jastcher/Programming
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/sys/cdefs.h \
+  /usr/include/time.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h
 
@@ -2599,6 +2657,7 @@ CMakeFiles/Engine.dir/Engine/src/ui.cpp.o: /home/jastcher/Programming/cpp/Cellat
   /usr/include/c++/15.2.1/bits/basic_string.tcc \
   /usr/include/c++/15.2.1/bits/char_traits.h \
   /usr/include/c++/15.2.1/bits/charconv.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
   /usr/include/c++/15.2.1/bits/concept_check.h \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
@@ -2630,6 +2689,7 @@ CMakeFiles/Engine.dir/Engine/src/ui.cpp.o: /home/jastcher/Programming/cpp/Cellat
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
   /usr/include/c++/15.2.1/bits/postypes.h \
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
@@ -2672,6 +2732,7 @@ CMakeFiles/Engine.dir/Engine/src/ui.cpp.o: /home/jastcher/Programming/cpp/Cellat
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
   /usr/include/c++/15.2.1/cfloat \
+  /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/climits \
   /usr/include/c++/15.2.1/clocale \
   /usr/include/c++/15.2.1/cmath \
@@ -2681,6 +2742,7 @@ CMakeFiles/Engine.dir/Engine/src/ui.cpp.o: /home/jastcher/Programming/cpp/Cellat
   /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/ctime \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
@@ -2707,6 +2769,7 @@ CMakeFiles/Engine.dir/Engine/src/ui.cpp.o: /home/jastcher/Programming/cpp/Cellat
   /usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/15.2.1/pstl/glue_memory_defs.h \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
   /usr/include/c++/15.2.1/string \
@@ -2866,6 +2929,7 @@ CMakeFiles/Engine.dir/Engine/src/window.cpp.o: /home/jastcher/Programming/cpp/Ce
   /usr/include/c++/15.2.1/bits/basic_string.tcc \
   /usr/include/c++/15.2.1/bits/char_traits.h \
   /usr/include/c++/15.2.1/bits/charconv.h \
+  /usr/include/c++/15.2.1/bits/chrono.h \
   /usr/include/c++/15.2.1/bits/concept_check.h \
   /usr/include/c++/15.2.1/bits/cpp_type_traits.h \
   /usr/include/c++/15.2.1/bits/cxxabi_forced.h \
@@ -2892,6 +2956,7 @@ CMakeFiles/Engine.dir/Engine/src/window.cpp.o: /home/jastcher/Programming/cpp/Ce
   /usr/include/c++/15.2.1/bits/ostream.h \
   /usr/include/c++/15.2.1/bits/ostream.tcc \
   /usr/include/c++/15.2.1/bits/ostream_insert.h \
+  /usr/include/c++/15.2.1/bits/parse_numbers.h \
   /usr/include/c++/15.2.1/bits/postypes.h \
   /usr/include/c++/15.2.1/bits/predefined_ops.h \
   /usr/include/c++/15.2.1/bits/ptr_traits.h \
@@ -2916,11 +2981,14 @@ CMakeFiles/Engine.dir/Engine/src/window.cpp.o: /home/jastcher/Programming/cpp/Ce
   /usr/include/c++/15.2.1/bits/version.h \
   /usr/include/c++/15.2.1/cctype \
   /usr/include/c++/15.2.1/cerrno \
+  /usr/include/c++/15.2.1/chrono \
   /usr/include/c++/15.2.1/clocale \
   /usr/include/c++/15.2.1/concepts \
   /usr/include/c++/15.2.1/cstddef \
+  /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/ctime \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
@@ -2936,9 +3004,11 @@ CMakeFiles/Engine.dir/Engine/src/window.cpp.o: /home/jastcher/Programming/cpp/Ce
   /usr/include/c++/15.2.1/iosfwd \
   /usr/include/c++/15.2.1/iostream \
   /usr/include/c++/15.2.1/istream \
+  /usr/include/c++/15.2.1/limits \
   /usr/include/c++/15.2.1/new \
   /usr/include/c++/15.2.1/ostream \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
+  /usr/include/c++/15.2.1/ratio \
   /usr/include/c++/15.2.1/stdexcept \
   /usr/include/c++/15.2.1/streambuf \
   /usr/include/c++/15.2.1/string \
@@ -4936,6 +5006,14 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/adxintrin.h:
 
+/usr/include/sys/ucontext.h:
+
+/usr/include/linux/close_range.h:
+
+/usr/include/c++/15.2.1/stdlib.h:
+
+/usr/include/c++/15.2.1/math.h:
+
 /usr/include/c++/15.2.1/bits/atomic_base.h:
 
 /usr/include/c++/15.2.1/bits/allocated_ptr.h:
@@ -5032,8 +5110,6 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/detail/func_geometric.inl:
 
-/usr/include/features.h:
-
 /usr/include/bits/pthreadtypes.h:
 
 /usr/include/c++/15.2.1/tr1/beta_function.tcc:
@@ -5084,13 +5160,13 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /usr/include/bits/timex.h:
 
+/usr/include/c++/15.2.1/ctime:
+
 /usr/include/bits/errno.h:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/lwpintrin.h:
 
 /usr/include/bits/endianness.h:
-
-/usr/include/c++/15.2.1/bits/cpp_type_traits.h:
 
 /usr/include/bits/cpu-set.h:
 
@@ -5141,6 +5217,8 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 /usr/include/bits/types/__locale_t.h:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/vec4.hpp:
+
+/usr/include/c++/15.2.1/bits/parse_numbers.h:
 
 /usr/include/X11/Xosdefs.h:
 
@@ -5472,6 +5550,10 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h:
 
+/usr/include/features.h:
+
+/usr/include/c++/15.2.1/chrono:
+
 /home/jastcher/Programming/cpp/Cellata/Engine/src/shader.cpp:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/mat3x2.hpp:
@@ -5520,6 +5602,12 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/detail/type_vec2.inl:
 
+/usr/include/signal.h:
+
+/usr/include/bits/atomic_wide_counter.h:
+
+/usr/include/c++/15.2.1/bits/enable_special_members.h:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/avx512vbmi2intrin.h:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_int4.hpp:
@@ -5550,6 +5638,8 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_int2.hpp:
 
+/usr/include/c++/15.2.1/ratio:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/limits.h:
 
 /usr/include/bits/types/struct_tm.h:
@@ -5559,6 +5649,8 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/sgxintrin.h:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_bool4.hpp:
+
+/usr/include/c++/15.2.1/bits/chrono.h:
 
 /usr/include/c++/15.2.1/bits/stl_function.h:
 
@@ -5610,8 +5702,6 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/simd/platform.h:
 
-/usr/include/c++/15.2.1/stdlib.h:
-
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_int2_sized.hpp:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_int3_sized.hpp:
@@ -5625,6 +5715,8 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 /usr/include/asm-generic/posix_types.h:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_uint2.hpp:
+
+/usr/include/c++/15.2.1/bits/cpp_type_traits.h:
 
 /usr/include/c++/15.2.1/cctype:
 
@@ -5751,8 +5843,6 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 /usr/include/c++/15.2.1/bits/stl_tempbuf.h:
 
 /usr/include/stdc-predef.h:
-
-/usr/include/sys/ucontext.h:
 
 /usr/include/c++/15.2.1/bits/unique_ptr.h:
 
@@ -5895,12 +5985,6 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 /usr/include/strings.h:
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/vector_double1.hpp:
-
-/usr/include/bits/atomic_wide_counter.h:
-
-/usr/include/c++/15.2.1/bits/enable_special_members.h:
-
-/usr/include/signal.h:
 
 /usr/include/c++/15.2.1/bits/std_abs.h:
 
@@ -6054,8 +6138,6 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 
 /home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/glm/ext/matrix_clip_space.hpp:
 
-/usr/include/c++/15.2.1/math.h:
-
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 
 /usr/include/bits/floatn-common.h:
@@ -6117,5 +6199,3 @@ CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.o: /home/jastcher/Prog
 /usr/include/bits/types/idtype_t.h:
 
 /usr/include/bits/types/siginfo_t.h:
-
-/usr/include/linux/close_range.h:

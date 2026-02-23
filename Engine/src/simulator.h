@@ -7,11 +7,11 @@
 class Simulator
 {
 public:
-  Simulator(int width, int height);
+  Simulator();
   ~Simulator();
 
-  void Draw(int mouseX, int mouseY);
-  void Step();
+  void Draw(float mouseX, float mouseY);
+  void Step(float deltaTime);
   void Resize(int width, int height);
   void Render();
 
@@ -20,10 +20,11 @@ public:
   void AddAutomaton(Automaton *automaton);
 
   bool isSimRunning = false;
+  bool stepOnce     = false;
 
   Automaton *automaton;
   std::vector<Automaton *> automata;
 
 private:
-  int m_Width, m_Height;
+  double timeAccumulator = 0.0;
 };

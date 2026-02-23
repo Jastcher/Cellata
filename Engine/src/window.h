@@ -1,5 +1,6 @@
 #pragma once
 #include "glad/glad.h"
+#include <chrono>
 #include "GLFW/glfw3.h"
 
 struct Props
@@ -33,16 +34,19 @@ public:
   void Clear();
   void Update();
 
+  void CalculateTime();
+
   static void ErrorCallback(int error, const char *description);
-  static void KeyCallback(GLFWwindow *window, int key, int scancode, int action,
-                          int mods);
-  static void FrameBufferSizeCallback(GLFWwindow *window, int width,
-                                      int height);
+  static void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
+  static void FrameBufferSizeCallback(GLFWwindow *window, int width, int height);
 
   GLFWwindow *window;
 
   UserPtr userPtr;
+  float deltaTime = 1 / 60.0;
 
 private:
   Props m_Properties = Props();
+
+  std::chrono::high_resolution_clock::time_point m_PrevTime;
 };

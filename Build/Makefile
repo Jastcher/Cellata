@@ -574,6 +574,54 @@ Engine/vendor/src/imgui_widgets.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Engine.dir/build.make CMakeFiles/Engine.dir/Engine/vendor/src/imgui_widgets.cpp.s
 .PHONY : Engine/vendor/src/imgui_widgets.cpp.s
 
+Sandbox/Conway/conway.o: Sandbox/Conway/conway.cpp.o
+.PHONY : Sandbox/Conway/conway.o
+
+# target to build an object file
+Sandbox/Conway/conway.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Sandbox.dir/build.make CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o
+.PHONY : Sandbox/Conway/conway.cpp.o
+
+Sandbox/Conway/conway.i: Sandbox/Conway/conway.cpp.i
+.PHONY : Sandbox/Conway/conway.i
+
+# target to preprocess a source file
+Sandbox/Conway/conway.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Sandbox.dir/build.make CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.i
+.PHONY : Sandbox/Conway/conway.cpp.i
+
+Sandbox/Conway/conway.s: Sandbox/Conway/conway.cpp.s
+.PHONY : Sandbox/Conway/conway.s
+
+# target to generate assembly for a file
+Sandbox/Conway/conway.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Sandbox.dir/build.make CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.s
+.PHONY : Sandbox/Conway/conway.cpp.s
+
+Sandbox/Sandsim/sandsim.o: Sandbox/Sandsim/sandsim.cpp.o
+.PHONY : Sandbox/Sandsim/sandsim.o
+
+# target to build an object file
+Sandbox/Sandsim/sandsim.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Sandbox.dir/build.make CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o
+.PHONY : Sandbox/Sandsim/sandsim.cpp.o
+
+Sandbox/Sandsim/sandsim.i: Sandbox/Sandsim/sandsim.cpp.i
+.PHONY : Sandbox/Sandsim/sandsim.i
+
+# target to preprocess a source file
+Sandbox/Sandsim/sandsim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Sandbox.dir/build.make CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.i
+.PHONY : Sandbox/Sandsim/sandsim.cpp.i
+
+Sandbox/Sandsim/sandsim.s: Sandbox/Sandsim/sandsim.cpp.s
+.PHONY : Sandbox/Sandsim/sandsim.s
+
+# target to generate assembly for a file
+Sandbox/Sandsim/sandsim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Sandbox.dir/build.make CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.s
+.PHONY : Sandbox/Sandsim/sandsim.cpp.s
+
 Sandbox/app.o: Sandbox/app.cpp.o
 .PHONY : Sandbox/app.o
 
@@ -662,6 +710,12 @@ help:
 	@echo "... Engine/vendor/src/imgui_widgets.o"
 	@echo "... Engine/vendor/src/imgui_widgets.i"
 	@echo "... Engine/vendor/src/imgui_widgets.s"
+	@echo "... Sandbox/Conway/conway.o"
+	@echo "... Sandbox/Conway/conway.i"
+	@echo "... Sandbox/Conway/conway.s"
+	@echo "... Sandbox/Sandsim/sandsim.o"
+	@echo "... Sandbox/Sandsim/sandsim.i"
+	@echo "... Sandbox/Sandsim/sandsim.s"
 	@echo "... Sandbox/app.o"
 	@echo "... Sandbox/app.i"
 	@echo "... Sandbox/app.s"

@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Sandbox.dir/link.d"
+  "CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o"
+  "CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o.d"
+  "CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o"
+  "CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o.d"
   "CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o"
   "CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o.d"
   "Sandbox"

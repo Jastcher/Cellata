@@ -72,10 +72,38 @@ include CMakeFiles/Sandbox.dir/flags.make
 CMakeFiles/Sandbox.dir/codegen:
 .PHONY : CMakeFiles/Sandbox.dir/codegen
 
+CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o: CMakeFiles/Sandbox.dir/flags.make
+CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o: /home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp
+CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o: CMakeFiles/Sandbox.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o -MF CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o.d -o CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o -c /home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp
+
+CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp > CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.i
+
+CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp -o CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.s
+
+CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o: CMakeFiles/Sandbox.dir/flags.make
+CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o: /home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp
+CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o: CMakeFiles/Sandbox.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o -MF CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o.d -o CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o -c /home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp
+
+CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp > CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.i
+
+CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp -o CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.s
+
 CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o: CMakeFiles/Sandbox.dir/flags.make
 CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o: /home/jastcher/Programming/cpp/Cellata/Sandbox/app.cpp
 CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o: CMakeFiles/Sandbox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o -MF CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o.d -o CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o -c /home/jastcher/Programming/cpp/Cellata/Sandbox/app.cpp
 
 CMakeFiles/Sandbox.dir/Sandbox/app.cpp.i: cmake_force
@@ -88,17 +116,21 @@ CMakeFiles/Sandbox.dir/Sandbox/app.cpp.s: cmake_force
 
 # Object files for target Sandbox
 Sandbox_OBJECTS = \
+"CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o" \
+"CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o" \
 "CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o"
 
 # External object files for target Sandbox
 Sandbox_EXTERNAL_OBJECTS =
 
+Sandbox: CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o
+Sandbox: CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o
 Sandbox: CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o
 Sandbox: CMakeFiles/Sandbox.dir/build.make
 Sandbox: CMakeFiles/Sandbox.dir/compiler_depend.ts
 Sandbox: libEngine.a
 Sandbox: CMakeFiles/Sandbox.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Sandbox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/jastcher/Programming/cpp/Cellata/Build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Sandbox"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Sandbox.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

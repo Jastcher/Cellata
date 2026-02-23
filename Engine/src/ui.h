@@ -13,12 +13,12 @@ public:
   UI(std::shared_ptr<Window> window, std::shared_ptr<Simulator> simulator);
   ~UI();
 
-  void Render(GLuint dataTexture);
+  void Render();
 
   bool viewportFocused;
 
   // viewport mouse coords
-  int viewportMouseX, viewportMouseY;
+  float viewportMouseX, viewportMouseY;
   bool isMouseDown;
 
   bool didViewportResize = false;

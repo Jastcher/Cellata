@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp" "CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o" "gcc" "CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o.d"
+  "/home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp" "CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o" "gcc" "CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o.d"
   "/home/jastcher/Programming/cpp/Cellata/Sandbox/app.cpp" "CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o" "gcc" "CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o.d"
   "" "Sandbox" "gcc" "CMakeFiles/Sandbox.dir/link.d"
   )

@@ -1,6 +1,7 @@
 #include "simulator.h"
+#include "glm/common.hpp"
 
-Simulator::Simulator(int width, int height) : m_Width(width), m_Height(height)
+Simulator::Simulator()
 {
 }
 
@@ -14,23 +15,33 @@ void Simulator::Resize(int width, int height)
 
   for (auto &a : automata)
   {
-    a->Resize(width, height);
+    if (a->dynamicResize) a->Resize(width, height);
   }
-  m_Width  = width;
-  m_Height = height;
 }
 
-void Simulator::Draw(int mouseX, int mouseY)
+void Simulator::Draw(float mouseX, float mouseY)
 {
-  automaton->Draw(mouseX, mouseY);
+  automaton->OnDraw(mouseX, mouseY);
 }
 
-void Simulator::Step()
+void Simulator::Step(float deltaTime)
 {
+  if (stepOnce)
+  {
+    automaton->Step();
+    stepOnce = false;
+  }
   // if not running, dont step
   if (!isSimRunning) return;
 
-  automaton->Step();
+  timeAccumulator += deltaTime;
+
+  double slice = 1.0f / automaton->simFPS;
+  while (timeAccumulator >= slice)
+  {
+    automaton->Step();
+    timeAccumulator -= slice;
+  }
 }
 
 void Simulator::Render()

@@ -63,9 +63,24 @@ static inline void MainWindow()
   ImGui::End();
 }
 
-static inline void ViewportWindow(UI *UI, GLuint dataTexture)
+static inline void ViewportWindow(UI *UI)
 {
   ImGui::Begin("Viewport");
+
+  // Automata selection
+  if (ImGui::BeginTabBar("Automata"))
+  {
+    for (auto &automaton : UI->simulator->automata)
+    {
+      if (ImGui::BeginTabItem(automaton->label))
+      {
+        UI->simulator->automaton = automaton;
+
+        ImGui::EndTabItem();
+      }
+    }
+    ImGui::EndTabBar();
+  }
 
   ImVec2 currentSize = ImGui::GetContentRegionAvail();
 
@@ -79,7 +94,8 @@ static inline void ViewportWindow(UI *UI, GLuint dataTexture)
     UI->simulator->Resize(currentSize.x, currentSize.y);
   }
 
-  ImGui::Image((ImTextureID)(uintptr_t)dataTexture, currentSize, ImVec2(0, 1), ImVec2(1, 0));
+  ImGui::Image((ImTextureID)(uintptr_t)UI->simulator->GetRenderDataTextureID(), currentSize, ImVec2(0, 1),
+               ImVec2(1, 0));
 
   UI->viewportFocused = ImGui::IsItemHovered();
   UI->isMouseDown     = false;
@@ -99,16 +115,18 @@ static inline void ViewportWindow(UI *UI, GLuint dataTexture)
   ImVec2 localMouse = ImVec2(mouse.x - imageMin.x, mouse.y - imageMin.y);
 
   // Flip Y for framebuffer coordinates
-  UI->viewportMouseX = localMouse.x;
-  UI->viewportMouseY = currentSize.y - localMouse.y;
+  UI->viewportMouseX = localMouse.x / currentSize.x;
+  UI->viewportMouseY = (currentSize.y - localMouse.y) / currentSize.y;
   ImGui::End();
 }
 
 static inline void InfoWindow(UI *UI)
 {
   ImGui::Begin("Info");
-  ImGui::Text("Viewport mouse %d ; %d", UI->viewportMouseX, UI->viewportMouseY);
+  ImGui::Text("Viewport mouse %f ; %f", UI->viewportMouseX, UI->viewportMouseY);
   ImGui::Text("Window size %d ; %d", UI->window->GetWidth(), UI->window->GetHeight());
+  ImGui::Text("dt: %f", UI->window->deltaTime);
+  ImGui::Text("fps: %f", 1.0f / UI->window->deltaTime);
   ImGui::End();
 }
 
@@ -117,11 +135,20 @@ static inline void ControlWindow(UI *UI)
   ImGui::Begin("Control");
 
   ImGui::Checkbox("Play", &UI->simulator->isSimRunning);
+  if (ImGui::Button("Step")) UI->simulator->stepOnce = true;
+
+  ImGui::Checkbox("Dynamic resize", &UI->simulator->automaton->dynamicResize);
+
+  auto &automaton = UI->simulator->automaton;
+  int *res[2]     = {&automaton->width, &automaton->height};
+  if (ImGui::InputInt2("Resolution", *res)) automaton->Resize(*res[0], *res[1]);
+
+  ImGui::DragFloat("SimFPS", &automaton->simFPS, 1.0f, 0.0f, 300.0f);
 
   ImGui::End();
 }
 
-void UI::Render(GLuint dataTexture)
+void UI::Render()
 {
   StartFrame();
 
@@ -130,7 +157,7 @@ void UI::Render(GLuint dataTexture)
   // ImGui::ShowDemoWindow();
 
   MainWindow();
-  ViewportWindow(this, dataTexture);
+  ViewportWindow(this);
   ControlWindow(this);
   InfoWindow(this);
   // PropertiesWindow(this);

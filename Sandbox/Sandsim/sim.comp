@@ -1,0 +1,111 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+struct Pixel {
+    ivec2 pos;
+    uint id;
+    uint props;
+    uint states;
+};
+
+Pixel MakePixel(ivec2 id) {
+    uvec4 data = imageLoad(pixelData, id);
+    Pixel p;
+    p.pos = id;
+    p.id = data.r;
+    p.props = data.g;
+    p.states = data.b;
+    return p;
+}
+
+const uint AIR = 0u;
+const uint SOLID = 1u;
+const uint LIQUID = 2u;
+const uint GRAIN = 4u;
+
+const uint FALLING = 1u;
+
+bool IsFalling(Pixel p) {
+  return (p.states & FALLING) != 0u;
+}
+bool IsAir(Pixel p) {
+  return (p.props) == 0u;
+}
+bool IsSolid(Pixel p) {
+  return (p.props & SOLID) != 0u;
+}
+bool IsLiquid(Pixel p) {
+  return (p.props & LIQUID) != 0u;
+}
+bool IsGrain(Pixel p) {
+  return (p.props & GRAIN) != 0u;
+}
+
+void Store(ivec2 pos, Pixel p) {
+  imageStore(pixelDataNext, pos, uvec4(p.id, p.props, p.states, 0));
+}
+
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+
+  Pixel current = MakePixel(id);
+  Pixel left = MakePixel(id + ivec2(-1, 0));
+  Pixel right= MakePixel(id + ivec2(1, 0));
+  Pixel up = MakePixel(id + ivec2(0,1));
+  Pixel up_right = MakePixel(id + ivec2(1,1));
+  Pixel up_left = MakePixel(id + ivec2(-1,1));
+  Pixel down = MakePixel(id + ivec2(0,-1));
+  Pixel down_left = MakePixel(id + ivec2(-1,-1));
+  Pixel down_right = MakePixel(id + ivec2(1,-1));
+
+  Pixel next = current;
+
+
+  // PUSH
+  if (IsGrain(current)) {
+    if (!IsSolid(down)) {
+      next = down;
+    }
+    else if (!IsSolid(down_left)) {
+      next = down_left;
+    }
+    else if (!IsSolid(down_right)) {
+      next = down_right;
+    }
+
+    else if(IsLiquid(current)) {
+      if (!IsSolid(left)) {
+        next = left;
+      }
+    }
+
+
+  }
+
+  // PULL
+  else if (IsAir(current)) {
+    if (IsGrain(up)) {
+      next = up;
+    }
+    else if (IsSolid(right) && IsGrain(up_right)) {
+      next = up_right;
+    }
+    else if (IsSolid(left) && IsGrain(up_left)) {
+      next = up_left;
+    }
+
+
+  }
+
+
+
+  Store(id, next);
+
+}
+
+

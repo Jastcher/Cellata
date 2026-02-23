@@ -8,26 +8,32 @@ public:
   Automaton();
   ~Automaton();
 
-  void Resize(int width, int height);
-
-  virtual void Draw(int mouseX, int mouseY);
+  virtual void OnDraw(float mouseX, float mouseY);
   virtual void Step();
   virtual void UI();
   virtual void Render();
+  virtual void Resize(int width, int height);
+  virtual void DrawGPU(float mouseX, float mouseY);
+  virtual void DrawCPU(float mouseX, float mouseY);
 
   GLuint GetRenderDataTextureID();
 
-  float drawRadius = 10.0f;
+  float drawRadius  = 10.0f;
+  const char *label = "Automaton";
 
   ComputeShader computeSim;    // For simulating each pixel
   ComputeShader computeDraw;   // For drawing with cursor onto the texture
   ComputeShader computeRender; // For translating data into colors for final rendering
+
+  bool dynamicResize = false;
+
+  int width, height;
+
+  float simFPS = 10.0f;
 
 protected:
   DataTexture m_DataTexture;     // Current state of data
   DataTexture m_NextDataTexture; // Next state of data
 
   DataTexture m_RenderDataTexture; // Final state of data for rendering
-
-  int m_Width, m_Height;
 };

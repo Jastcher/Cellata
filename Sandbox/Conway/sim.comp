@@ -1,0 +1,48 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+
+  uint current = imageLoad(pixelData, id).x;
+  uint left = imageLoad(pixelData, id + ivec2(-1,0)).x;
+  uint right= imageLoad(pixelData, id + ivec2(1,0)).x;
+  uint up = imageLoad(pixelData, id + ivec2(0,1)).x;
+  uint down = imageLoad(pixelData, id + ivec2(0,-1)).x;
+  uint up_left = imageLoad(pixelData, id + ivec2(-1,1)).x;
+  uint up_right = imageLoad(pixelData, id + ivec2(1,1)).x;
+  uint down_left = imageLoad(pixelData, id + ivec2(-1,-1)).x;
+  uint down_right = imageLoad(pixelData, id + ivec2(1,-1)).x;
+
+  uint total = left + right + up + down + up_left + up_right + down_left + down_right;
+
+  if (current == 1) {
+    //Any live cell with fewer than two live neighbours dies, as if by underpopulation.
+    if (total < 2) {
+      imageStore(pixelDataNext, id, uvec4(0, 0, 0, 0));
+    }
+    //Any live cell with more than three live neighbours dies, as if by overpopulation.
+    else if (total > 3) {
+      imageStore(pixelDataNext, id, uvec4(0, 0, 0, 0));
+    } 
+    //Any live cell with two or three live neighbours lives on to the next generation.
+    else {
+      imageStore(pixelDataNext, id, uvec4(1, 0, 0, 0));
+
+    }
+  } else {
+    //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    if (total == 3) {
+      imageStore(pixelDataNext, id, uvec4(1, 0, 0, 0));
+    } else {
+      imageStore(pixelDataNext, id, uvec4(0, 0, 0, 0));
+    }
+  }
+}
+
+

@@ -109,6 +109,18 @@
 },
 {
   "directory": "/home/jastcher/Programming/cpp/Cellata/Build",
+  "command": "/usr/bin/c++  -I/home/jastcher/Programming/cpp/Cellata/Engine/src -I/home/jastcher/Programming/cpp/Cellata/Engine/vendor/include -I/home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/imgui -std=gnu++17 -o CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o -c /home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp",
+  "file": "/home/jastcher/Programming/cpp/Cellata/Sandbox/Conway/conway.cpp",
+  "output": "CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o"
+},
+{
+  "directory": "/home/jastcher/Programming/cpp/Cellata/Build",
+  "command": "/usr/bin/c++  -I/home/jastcher/Programming/cpp/Cellata/Engine/src -I/home/jastcher/Programming/cpp/Cellata/Engine/vendor/include -I/home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/imgui -std=gnu++17 -o CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o -c /home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp",
+  "file": "/home/jastcher/Programming/cpp/Cellata/Sandbox/Sandsim/sandsim.cpp",
+  "output": "CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o"
+},
+{
+  "directory": "/home/jastcher/Programming/cpp/Cellata/Build",
   "command": "/usr/bin/c++  -I/home/jastcher/Programming/cpp/Cellata/Engine/src -I/home/jastcher/Programming/cpp/Cellata/Engine/vendor/include -I/home/jastcher/Programming/cpp/Cellata/Engine/vendor/include/imgui -std=gnu++17 -o CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o -c /home/jastcher/Programming/cpp/Cellata/Sandbox/app.cpp",
   "file": "/home/jastcher/Programming/cpp/Cellata/Sandbox/app.cpp",
   "output": "CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o"
