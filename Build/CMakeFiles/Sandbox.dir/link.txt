@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/Sandbox.dir/link.d CMakeFiles/Sandbox.dir/Sandbox/Conway/conway.cpp.o CMakeFiles/Sandbox.dir/Sandbox/Sandsim/sandsim.cpp.o CMakeFiles/Sandbox.dir/Sandbox/app.cpp.o -o Sandbox   -L/home/jastcher/Programming/cpp/Cellata/Engine/vendor/lib  -Wl,-rpath,/home/jastcher/Programming/cpp/Cellata/Engine/vendor/lib libEngine.a -lglfw3 -lGL
