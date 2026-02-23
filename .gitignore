@@ -353,7 +353,7 @@ MigrationBackup/
 .ionide/
 
 # Cmake
-build/
+Build/
 
 # Clion
 cmake-build-debug/
