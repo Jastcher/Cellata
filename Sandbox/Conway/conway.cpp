@@ -4,7 +4,7 @@
 Conway::Conway() : Automaton()
 {
 
-  computeSim    = ComputeShader("../Sandbox/Conway/sim.comp");
+  computeSims.push_back(ComputeShader("../Sandbox/Conway/sim.comp"));
   computeRender = ComputeShader("../Sandbox/Conway/render.comp");
 
   label = "Conway";

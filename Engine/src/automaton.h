@@ -21,9 +21,9 @@ public:
   float drawRadius  = 10.0f;
   const char *label = "Automaton";
 
-  ComputeShader computeSim;    // For simulating each pixel
-  ComputeShader computeDraw;   // For drawing with cursor onto the texture
-  ComputeShader computeRender; // For translating data into colors for final rendering
+  std::vector<ComputeShader> computeSims; // Each element is for different layer of simulation
+  ComputeShader computeDraw;              // For drawing with cursor onto the texture
+  ComputeShader computeRender;            // For translating data into colors for final rendering
 
   bool dynamicResize = false;
 

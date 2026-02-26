@@ -26,7 +26,7 @@ void DataTexture::Init(int width, int height)
   // Set parameters as usual
   glTextureParameteri(id, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   glTextureParameteri(id, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-  GLuint clearColor[] = {0, 0, 0, 1};
+  GLuint clearColor[] = {0, 0, 0, 0};
   glClearTexImage(id, 0, GL_RGBA_INTEGER, GL_UNSIGNED_INT, clearColor);
 }
 

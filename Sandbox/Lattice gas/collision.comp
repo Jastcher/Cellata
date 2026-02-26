@@ -1,0 +1,84 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+
+struct Cell {
+  bool up, right, down, left, empty;
+};
+
+Cell MakeCell(uvec4 data) {
+  Cell cell;
+
+  cell.up = bool(data.x);
+  cell.right = bool(data.y);
+  cell.down = bool(data.z);
+  cell.left = bool(data.w);
+
+  cell.empty = !(cell.up || cell.right || cell.down || cell.left);
+
+  return cell;
+}
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+  ivec2 size = imageSize(pixelData);
+
+  Cell current = MakeCell(imageLoad(pixelData, id));
+  Cell left = MakeCell(imageLoad(pixelData, id + ivec2(-1,0)));
+  Cell right= MakeCell(imageLoad(pixelData, id + ivec2(1,0)));
+  Cell up = MakeCell(imageLoad(pixelData, id + ivec2(0,1)));
+  Cell down = MakeCell(imageLoad(pixelData, id + ivec2(0,-1)));
+  Cell up_left = MakeCell(imageLoad(pixelData, id + ivec2(-1,1)));
+  Cell up_right = MakeCell(imageLoad(pixelData, id + ivec2(1,1)));
+  Cell down_left = MakeCell(imageLoad(pixelData, id + ivec2(-1,-1)));
+  Cell down_right = MakeCell(imageLoad(pixelData, id + ivec2(1,-1)));
+
+  Cell next = current;
+  
+
+  if (!current.empty) {
+    // left wall
+    if (id.x == 0) {
+        next.left = false;
+        next.right = true;
+    }
+    // right wall
+    else if (id.x == size.x - 1) {
+        next.left = true;
+        next.right = false;
+    }
+    // up wall
+    else if (id.y == size.y - 1) {
+        next.up = false;
+        next.down = true;
+    }
+    // down wall
+    else if (id.y == 0) {
+        next.up = true;
+        next.down = false;
+    }
+    
+    if (current.left && current.right) {
+      next.left = false;
+      next.right = false;
+      next.up = true;
+      next.down = true;
+
+    }
+
+    if (current.up && current.down) {
+      next.left = true;
+      next.right = true;
+      next.up = false;
+      next.down = false;
+    }
+  }
+
+  imageStore(pixelDataNext, id, uvec4(next.up, next.right, next.down, next.left));
+
+
+}

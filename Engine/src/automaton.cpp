@@ -50,18 +50,22 @@ void Automaton::DrawCPU(float mouseX, float mouseY)
 
 void Automaton::Step()
 {
-  computeSim.Activate();
+  for (const auto &sim : computeSims)
+  {
 
-  m_DataTexture.Bind(0);
-  m_NextDataTexture.Bind(1);
+    sim.Activate();
 
-  computeSim.Dispatch(width / 8, height / 8);
+    m_DataTexture.Bind(0);
+    m_NextDataTexture.Bind(1);
 
-  glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+    sim.Dispatch(width / 8, height / 8);
 
-  GLuint temp          = m_DataTexture.id;
-  m_DataTexture.id     = m_NextDataTexture.id;
-  m_NextDataTexture.id = temp;
+    glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+
+    GLuint temp          = m_DataTexture.id;
+    m_DataTexture.id     = m_NextDataTexture.id;
+    m_NextDataTexture.id = temp;
+  }
 }
 
 void Automaton::Render()

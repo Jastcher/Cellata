@@ -1,0 +1,62 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+
+struct Cell {
+  bool up, right, down, left, empty;
+};
+
+Cell MakeCell(uvec4 data) {
+  Cell cell;
+
+  cell.up = bool(data.x);
+  cell.right = bool(data.y);
+  cell.down = bool(data.z);
+  cell.left = bool(data.w);
+
+  cell.empty = !(cell.up || cell.right || cell.down || cell.left);
+
+  return cell;
+}
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+
+  Cell current = MakeCell(imageLoad(pixelData, id));
+  Cell left = MakeCell(imageLoad(pixelData, id + ivec2(-1,0)));
+  Cell right= MakeCell(imageLoad(pixelData, id + ivec2(1,0)));
+  Cell up = MakeCell(imageLoad(pixelData, id + ivec2(0,1)));
+  Cell down = MakeCell(imageLoad(pixelData, id + ivec2(0,-1)));
+
+  Cell next = MakeCell(uvec4(0,0,0,0));
+
+
+  // up going down
+  if (up.down) {
+    next.down = true;
+
+  }
+  // right going left 
+  if (right.left) {
+    next.left= true;
+
+  }
+  // down going up
+  if (down.up) {
+    next.up= true;
+
+  }
+  // left going right
+  if (left.right) {
+    next.right = true;
+
+  }
+
+  imageStore(pixelDataNext, id, uvec4(next.up, next.right, next.down, next.left));
+}
+
+

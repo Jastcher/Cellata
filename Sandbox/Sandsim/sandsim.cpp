@@ -7,7 +7,7 @@ Sandsim::Sandsim()
 {
   colorBuffer.Init(colors.size() * sizeof(glm::vec4), colors.data());
 
-  computeSim    = ComputeShader("../Sandbox/Sandsim/sim.comp");
+  computeSims.push_back(ComputeShader("../Sandbox/Sandsim/sim.comp"));
   computeDraw   = ComputeShader("../Sandbox/Sandsim/draw.comp");
   computeRender = ComputeShader("../Sandbox/Sandsim/render.comp");
 

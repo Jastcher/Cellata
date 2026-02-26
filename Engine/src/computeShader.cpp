@@ -48,12 +48,12 @@ void ComputeShader::Init(std::string source, const char *filePath)
   glDeleteShader(shader);
 }
 
-void ComputeShader::Activate()
+void ComputeShader::Activate() const
 {
   glUseProgram(id);
 }
 
-void ComputeShader::Dispatch(unsigned int x, unsigned int y)
+void ComputeShader::Dispatch(unsigned int x, unsigned int y) const
 {
   glDispatchCompute(x, y, 1);
 }
