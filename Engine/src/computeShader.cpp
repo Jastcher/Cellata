@@ -58,16 +58,16 @@ void ComputeShader::Dispatch(unsigned int x, unsigned int y) const
   glDispatchCompute(x, y, 1);
 }
 
-void ComputeShader::SetInt(const char *uniform, int unit)
+void ComputeShader::SetInt(const char *uniform, int unit) const
 {
   glUniform1i(glGetUniformLocation(id, uniform), unit);
 }
 
-void ComputeShader::SetFloat(const char *uniform, float unit)
+void ComputeShader::SetFloat(const char *uniform, float unit) const
 {
   glUniform1f(glGetUniformLocation(id, uniform), unit);
 }
-void ComputeShader::SetVec2(const char *uniform, glm::vec2 unit)
+void ComputeShader::SetVec2(const char *uniform, glm::vec2 unit) const
 {
   glUniform2f(glGetUniformLocation(id, uniform), unit.x, unit.y);
 }

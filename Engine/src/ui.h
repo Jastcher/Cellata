@@ -28,4 +28,8 @@ public:
   std::shared_ptr<Simulator> simulator;
 
   ImVec2 prevViewportSize;
+
+  // camera things
+  float zoom = 1.0f;
+  ImVec2 scroll;
 };

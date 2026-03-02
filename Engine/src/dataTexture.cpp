@@ -23,6 +23,14 @@ void DataTexture::Init(int width, int height)
   // Allocate storage (RGBA32F is 4 floats per pixel)
   glTextureStorage2D(id, 1, format, width, height);
 
+  // Set wrapping to Clamp to Border
+  glTextureParameteri(id, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+  glTextureParameteri(id, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+
+  // Define the border color
+  float borderColor[] = {0.1f, 0.1f, 0.1f, 1.0f};
+  glTextureParameterfv(id, GL_TEXTURE_BORDER_COLOR, borderColor);
+
   // Set parameters as usual
   glTextureParameteri(id, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   glTextureParameteri(id, GL_TEXTURE_MAG_FILTER, GL_NEAREST);

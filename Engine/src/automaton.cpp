@@ -1,8 +1,7 @@
 #include "automaton.h"
 #include "dataTexture.h"
 #include "imgui.h"
-#include "window.h"
-#include <iostream>
+#include <functional>
 
 Automaton::Automaton()
 {
@@ -22,6 +21,8 @@ void Automaton::DrawGPU(float mouseX, float mouseY)
 {
   computeDraw.Activate();
   computeDraw.SetVec2("u_MousePos", glm::vec2(mouseX, mouseY));
+  computeDraw.SetInt("width", width);
+  computeDraw.SetInt("height", height);
 
   computeDraw.SetFloat("radius", drawRadius);
 
@@ -57,6 +58,22 @@ void Automaton::Step()
 
     m_DataTexture.Bind(0);
     m_NextDataTexture.Bind(1);
+
+    // set uniform vars
+    for (const UniformVariable &var : uniformVars)
+
+    {
+      switch (var.data.index())
+      {
+
+      case 0: // int
+        sim.SetInt(var.name, std::get<std::reference_wrapper<int>>(var.data));
+        break;
+      case 1: // float
+        sim.SetFloat(var.name, std::get<std::reference_wrapper<float>>(var.data));
+        break;
+      }
+    }
 
     sim.Dispatch(width / 8, height / 8);
 

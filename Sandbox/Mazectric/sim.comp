@@ -1,0 +1,48 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+
+  uint current = imageLoad(pixelData, id).x;
+  uint left = imageLoad(pixelData, id + ivec2(-1,0)).x;
+  uint right= imageLoad(pixelData, id + ivec2(1,0)).x;
+  uint up = imageLoad(pixelData, id + ivec2(0,1)).x;
+  uint down = imageLoad(pixelData, id + ivec2(0,-1)).x;
+  uint up_left = imageLoad(pixelData, id + ivec2(-1,1)).x;
+  uint up_right = imageLoad(pixelData, id + ivec2(1,1)).x;
+  uint down_left = imageLoad(pixelData, id + ivec2(-1,-1)).x;
+  uint down_right = imageLoad(pixelData, id + ivec2(1,-1)).x;
+
+  uint total = left + right + up + down + up_left + up_right + down_left + down_right;
+
+
+  uvec4 next = uvec4(current, 0, 0, 0);
+
+  // Mazectric Rules: B3 / S1234
+  if (current == 0) {
+      if (total == 3) {
+          next.x = 1; // Birth
+      } else {
+          next.x = 0; // Stay dead
+      }
+  } else {
+      if (total >= 1 && total <= 5) {
+          next.x = 1; // Survive
+      } else {
+          next.x = 0; // Death by isolation (0) or overcrowding (>4)
+      }
+  }
+  imageStore(pixelDataNext, id, next);
+
+
+
+
+}
+
+

@@ -1,0 +1,90 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+uniform int n;
+uniform int k1;
+uniform int k2;
+uniform int g;
+
+struct Cell {
+  uint state;
+  bool healthy, infected, ill;
+};
+
+Cell MakeCell(uvec4 data) {
+  Cell cell;
+  cell.state = data.x;
+  cell.healthy = cell.state == 0;
+  cell.infected = cell.state > 0 && cell.state < n;
+  cell.ill = cell.state >= n;
+
+  return cell;
+}
+
+Cell GetCell(ivec2 id) {
+    return MakeCell(imageLoad(pixelData, id));
+}
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+
+
+  Cell current    = GetCell(id);
+
+  Cell left       = GetCell(id + ivec2(-1,  0));
+  Cell right      = GetCell(id + ivec2( 1,  0));
+  Cell up         = GetCell(id + ivec2( 0,  1));
+  Cell down       = GetCell(id + ivec2( 0, -1));
+  Cell up_left    = GetCell(id + ivec2(-1,  1));
+  Cell up_right   = GetCell(id + ivec2( 1,  1));
+  Cell down_left  = GetCell(id + ivec2(-1, -1));
+  Cell down_right = GetCell(id + ivec2( 1, -1));
+
+  Cell next = current;
+
+
+  // amount of infected cells
+  int a = int(left.infected) + int(right.infected) + int(up.infected) + 
+          int(down.infected) + int(up_right.infected) + int(up_left.infected) + 
+          int(down_left.infected) + int(down_right.infected);
+
+  // amount of ill cells
+  int b = int(left.ill) + int(right.ill) + int(up.ill) + 
+          int(down.ill) + int(up_right.ill) + int(up_left.ill) + 
+          int(down_left.ill) + int(down_right.ill);
+
+  // sum of states of cell and neighbor
+  int s = int(current.state) + int(left.state) + int(right.state) + 
+          int(up.state) + int(down.state) + int(up_right.state) + 
+          int(up_left.state) + int(down_left.state) + int(down_right.state);
+
+  // (i)
+  // if healthy
+  if (current.healthy) {
+    next.state = a/k1 + b/k2;
+  } 
+  
+  // (ii)
+  // if ill
+  else if (current.ill) {
+    // make healthy
+    next.state = 0;
+  }
+
+  // (iii)
+  // if infected
+  else if(current.infected) {
+      next.state = s/(a+b+1) + g;
+  }
+  imageStore(pixelDataNext, id, uvec4(next.state, 0, 0, 0));
+
+
+
+
+}
+
+

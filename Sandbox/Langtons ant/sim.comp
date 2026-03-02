@@ -1,0 +1,91 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+
+struct Cell {
+  bool isBlack, isAnt;
+
+  uint dir;
+};
+
+Cell MakeCell(uvec4 data) {
+  Cell cell;
+
+  cell.isBlack = bool(data.x);
+  cell.isAnt = bool(data.y);
+  cell.dir = data.z;
+
+  return cell;
+}
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+  ivec2 size = imageSize(pixelData);
+
+  Cell current = MakeCell(imageLoad(pixelData, id));
+  Cell left = MakeCell(imageLoad(pixelData, id + ivec2(-1,0)));
+  Cell right= MakeCell(imageLoad(pixelData, id + ivec2(1,0)));
+  Cell up = MakeCell(imageLoad(pixelData, id + ivec2(0,1)));
+  Cell down = MakeCell(imageLoad(pixelData, id + ivec2(0,-1)));
+
+  Cell cells[4] = {up, right, down, left};
+
+  Cell next = current;
+
+  uint upDir = 0u;
+  uint rightDir = 1u;
+  uint downDir = 2u;
+  uint leftDir = 3u;
+
+  ivec2 leftVec = ivec2(-1,0);
+  ivec2 upVec = ivec2(0,1);
+  ivec2 rightVec = ivec2(1,0);
+  ivec2 downVec = ivec2(0,-1);
+
+  ivec2 vecs[4] = {upVec, rightVec, downVec, leftVec};
+
+
+  if (current.isAnt) {
+    next.isAnt = false;
+    next.isBlack = !current.isBlack;
+    next.dir = 0;
+  }
+
+  if (up.isAnt) {
+    uint turnDir = (up.dir + (up.isBlack ? 3u : 1u)) % 4u;
+    if (turnDir == downDir) {
+      next.isAnt = true;
+      next.dir = turnDir;
+    }
+  }
+  if (right.isAnt) {
+    uint turnDir = (right.dir + (right.isBlack ? 3u : 1u)) % 4u;
+    if (turnDir == leftDir) {
+      next.isAnt = true;
+      next.dir = turnDir;
+    }
+  }
+  if (down.isAnt) {
+    uint turnDir = (down.dir + (down.isBlack ? 3u : 1u)) % 4u;
+    if (turnDir == upDir) {
+      next.isAnt = true;
+      next.dir = turnDir;
+    }
+  }
+  if (left.isAnt) {
+    uint turnDir = (left.dir + (left.isBlack ? 3u : 1u)) % 4u;
+    if (turnDir == rightDir) {
+      next.isAnt = true;
+      next.dir = turnDir;
+    }
+  }
+
+  imageStore(pixelDataNext, id, uvec4(next.isBlack, next.isAnt, next.dir, 0));
+
+}
+
+

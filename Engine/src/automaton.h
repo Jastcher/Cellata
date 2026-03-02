@@ -1,12 +1,21 @@
 
 #include "computeShader.h"
 #include "dataTexture.h"
+#include <functional>
+#include <variant>
+
+struct UniformVariable
+{
+  const char *name;
+
+  std::variant<std::reference_wrapper<int>, std::reference_wrapper<float>, glm::vec2> data; // tagged union
+};
 
 class Automaton
 {
 public:
   Automaton();
-  ~Automaton();
+  virtual ~Automaton();
 
   virtual void OnDraw(float mouseX, float mouseY);
   virtual void Step();
@@ -30,6 +39,8 @@ public:
   int width, height;
 
   float simFPS = 10.0f;
+
+  std::vector<UniformVariable> uniformVars;
 
 protected:
   DataTexture m_DataTexture;     // Current state of data
