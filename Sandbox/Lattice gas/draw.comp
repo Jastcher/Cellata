@@ -13,13 +13,22 @@ uniform int height;
 
 
 void main() {
-    ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 pixel_id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(imgOutput);
 
-    float dist = distance(vec2(pixel_coords), u_MousePos * vec2(width, height));
+    if (any(greaterThanEqual(pixel_id, size))) return;
+
+    float dist = distance(vec2(pixel_id), u_MousePos * vec2(size.x, size.y));
+
+    uvec4 states = uvec4(id == 1, id == 2, id == 3, id == 4);
+
+  // if selection is wall
+    if (id == 5) {
+      states.x  = 2; // set to wall on first byte
+    }
 
     if (dist <= radius) {
-        imageStore(imgOutput, pixel_coords,
-                    uvec4(id == 1, id == 2, id == 3, id == 4));
+        imageStore(imgOutput, pixel_id, states);
     }
 }
 

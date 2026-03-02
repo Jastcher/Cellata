@@ -17,9 +17,9 @@ public:
 
   void Randomize();
 
-  unsigned char direction = 0; // 0 = empty, 1 = up, 2 = right, 3 = down, 4 = left
+  unsigned char direction = 0; // 0 = empty, 1 = up, 2 = right, 3 = down, 4 = left, 5 = wall
 
-  bool gpuDraw = false;
+  bool gpuDraw = true;
 
 private:
   bool selection = true;

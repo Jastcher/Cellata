@@ -58,7 +58,7 @@ void Sandsim::DrawGPU(float mouseX, float mouseY)
   computeDraw.SetInt("width", width);
   computeDraw.SetInt("height", height);
 
-  computeDraw.Dispatch(width / 8, height / 8);
+  computeDraw.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
@@ -71,7 +71,7 @@ void Sandsim::Render()
   m_RenderDataTexture.Bind(1);
   colorBuffer.Bind(2);
 
-  computeRender.Dispatch(width / 8, height / 8);
+  computeRender.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }

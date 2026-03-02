@@ -13,6 +13,7 @@ LatticeGas::LatticeGas() : Automaton()
 
   label         = "Lattice Gas";
   dynamicResize = true;
+  simFPS        = 25;
   // Resize(32, 32);
 }
 
@@ -27,6 +28,7 @@ void LatticeGas::UI()
   if (ImGui::Selectable("right", direction == 2)) direction = 2;
   if (ImGui::Selectable("down", direction == 3)) direction = 3;
   if (ImGui::Selectable("left", direction == 4)) direction = 4;
+  if (ImGui::Selectable("wall", direction == 5)) direction = 5;
 
   if (ImGui::Checkbox("GPUDraw", &gpuDraw))
     ;
@@ -55,7 +57,7 @@ void LatticeGas::DrawGPU(float mouseX, float mouseY)
   computeDraw.SetInt("width", width);
   computeDraw.SetInt("height", height);
 
-  computeDraw.Dispatch(width / 8, height / 8);
+  computeDraw.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }

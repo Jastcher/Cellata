@@ -73,7 +73,7 @@ void BZReaction::Render()
 
   computeRender.SetInt("n", n);
 
-  computeRender.Dispatch(width / 8, height / 8);
+  computeRender.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
@@ -91,7 +91,7 @@ void BZReaction::DrawGPU(float mouseX, float mouseY)
   computeDraw.SetInt("height", height);
   computeDraw.SetFloat("radius", drawRadius);
 
-  computeDraw.Dispatch(width / 8, height / 8);
+  computeDraw.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }

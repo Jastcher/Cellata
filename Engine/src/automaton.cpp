@@ -26,7 +26,7 @@ void Automaton::DrawGPU(float mouseX, float mouseY)
 
   computeDraw.SetFloat("radius", drawRadius);
 
-  computeDraw.Dispatch(width / 8, height / 8);
+  computeDraw.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
@@ -75,7 +75,7 @@ void Automaton::Step()
       }
     }
 
-    sim.Dispatch(width / 8, height / 8);
+    sim.Dispatch(width, height);
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 
@@ -92,7 +92,7 @@ void Automaton::Render()
   m_DataTexture.Bind(0);
   m_RenderDataTexture.Bind(1);
 
-  computeRender.Dispatch(width / 8, height / 8);
+  computeRender.Dispatch(width, height);
 
   glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }

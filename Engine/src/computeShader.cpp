@@ -53,11 +53,11 @@ void ComputeShader::Activate() const
   glUseProgram(id);
 }
 
-void ComputeShader::Dispatch(unsigned int x, unsigned int y) const
+// Always use this helper for dispatching
+void ComputeShader::Dispatch(int width, int height, int localX, int localY) const
 {
-  glDispatchCompute(x, y, 1);
+  glDispatchCompute((width + localX - 1) / localX, (height + localY - 1) / localY, 1);
 }
-
 void ComputeShader::SetInt(const char *uniform, int unit) const
 {
   glUniform1i(glGetUniformLocation(id, uniform), unit);

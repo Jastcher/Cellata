@@ -12,7 +12,7 @@ public:
   ~ComputeShader();
 
   void Init(std::string source, const char *filePath);
-  void Dispatch(unsigned int x, unsigned int y) const;
+  void Dispatch(int width, int height, int localX = 8, int localY = 8) const;
   void Activate() const;
 
   std::string LoadFile(const char *filePath);

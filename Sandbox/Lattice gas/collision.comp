@@ -7,7 +7,7 @@ layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
 
 
 struct Cell {
-  bool up, right, down, left, empty;
+  bool up, right, down, left, empty, wall;
 };
 
 Cell MakeCell(uvec4 data) {
@@ -17,6 +17,9 @@ Cell MakeCell(uvec4 data) {
   cell.right = bool(data.y);
   cell.down = bool(data.z);
   cell.left = bool(data.w);
+  cell.wall = bool(data.x == 2);
+  if (cell.wall)
+    cell.up = false;
 
   cell.empty = !(cell.up || cell.right || cell.down || cell.left);
 
@@ -24,61 +27,72 @@ Cell MakeCell(uvec4 data) {
 }
 
 void main() {
-  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
-  ivec2 size = imageSize(pixelData);
+    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(pixelData);
 
-  Cell current = MakeCell(imageLoad(pixelData, id));
-  Cell left = MakeCell(imageLoad(pixelData, id + ivec2(-1,0)));
-  Cell right= MakeCell(imageLoad(pixelData, id + ivec2(1,0)));
-  Cell up = MakeCell(imageLoad(pixelData, id + ivec2(0,1)));
-  Cell down = MakeCell(imageLoad(pixelData, id + ivec2(0,-1)));
-  Cell up_left = MakeCell(imageLoad(pixelData, id + ivec2(-1,1)));
-  Cell up_right = MakeCell(imageLoad(pixelData, id + ivec2(1,1)));
-  Cell down_left = MakeCell(imageLoad(pixelData, id + ivec2(-1,-1)));
-  Cell down_right = MakeCell(imageLoad(pixelData, id + ivec2(1,-1)));
+    if (any(greaterThanEqual(id, size))) return;
 
-  Cell next = current;
-  
+    Cell current = MakeCell(imageLoad(pixelData, id));
+    Cell up= MakeCell(imageLoad(pixelData, id + ivec2(0,1)));
+    Cell right= MakeCell(imageLoad(pixelData, id + ivec2(1,0)));
+    Cell down= MakeCell(imageLoad(pixelData, id + ivec2(0,-1)));
+    Cell left= MakeCell(imageLoad(pixelData, id + ivec2(-1,0)));
 
-  if (!current.empty) {
-    // left wall
-    if (id.x == 0) {
-        next.left = false;
-        next.right = true;
+    Cell next = current;
+
+    if (!current.empty && !current.wall) {
+        if (next.up && up.wall) {
+          next.up = false;
+          next.down = true;
+        }
+        if (next.right && right.wall) {
+          next.right = false;
+          next.left = true;
+        }
+        if (next.down && down.wall) {
+          next.down = false;
+          next.up = true;
+        }
+        if (next.left && left.wall) {
+          next.left = false;
+          next.right = true;
+        }
+
+        // --- X-AXIS BOUNDARIES ---
+        if (id.x <= 0) {
+            next.left = false;
+            next.right = true;
+        } 
+        else if (id.x >= size.x - 1) {
+            next.right = false;
+            next.left = true;
+        }
+
+        // --- Y-AXIS BOUNDARIES ---
+        if (id.y <= 0) {
+            next.down = false;
+            next.up = true;
+        } 
+        else if (id.y >= size.y - 1) {
+            next.up = false;
+            next.down = true;
+        }
+
+        if (next.left && next.right) {
+            next.left = false;
+            next.right = false;
+            next.up = true;
+            next.down = true;
+        }
+        else if (next.up && next.down) {
+            next.up = false;
+            next.down = false;
+            next.left = true;
+            next.right = true;
+        }
     }
-    // right wall
-    else if (id.x == size.x - 1) {
-        next.left = true;
-        next.right = false;
-    }
-    // up wall
-    else if (id.y == size.y - 1) {
-        next.up = false;
-        next.down = true;
-    }
-    // down wall
-    else if (id.y == 0) {
-        next.up = true;
-        next.down = false;
-    }
-    
-    if (current.left && current.right) {
-      next.left = false;
-      next.right = false;
-      next.up = true;
-      next.down = true;
 
-    }
-
-    if (current.up && current.down) {
-      next.left = true;
-      next.right = true;
-      next.up = false;
-      next.down = false;
-    }
-  }
-
-  imageStore(pixelDataNext, id, uvec4(next.up, next.right, next.down, next.left));
-
-
+    int outX = int(next.up);
+    if (next.wall) outX = 2;
+    imageStore(pixelDataNext, id, uvec4(outX, next.right, next.down, next.left));
 }

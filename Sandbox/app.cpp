@@ -19,13 +19,12 @@ int main()
   LangtonsAnt langtonsAnt;
   Mazectric mazectric;
 
-  app.Add(&bzReaction);
-
   app.Add(&sandsim);
   app.Add(&conway);
   app.Add(&latticeGas);
   app.Add(&langtonsAnt);
   app.Add(&mazectric);
+  app.Add(&bzReaction);
 
   app.Run();
 

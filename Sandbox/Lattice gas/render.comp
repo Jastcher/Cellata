@@ -7,33 +7,39 @@ layout(rgba8, binding = 1) uniform image2D imgOutput;
 
 
 void main() {
-  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(imgInput);
+    if (any(greaterThanEqual(id, size))) return;
 
-  uvec4 data = imageLoad(imgInput, id);
+    uvec4 data = imageLoad(imgInput, id);
 
-  vec4 inc = vec4(0.25,0.25,0.25,1.0);
-  vec4 col = vec4(0.0,0.0,0.0,1.0);
+    // 1. Check for Walls First
+    // In your logic, data.x == 2 is a wall. 
+    if (data.x == 2) {
+        imageStore(imgOutput, id, vec4(0.2, 0.2, 0.2, 1.0)); // Dark Gray Wall
+        return;
+    }
 
-  #if 0
-  if (data.x == 1) col.x = 1.0;
-  if (data.y == 1) col.y = 1.0;
-  if (data.z == 1) col.z = 1.0;
-  if (data.w == 1) {
-    col.x = 1.0;
-    col.y = 1.0;
-  } 
+    // 2. Calculate Density (Count active particles)
+    // Assuming 1 means a particle is present
+    float density = float(data.x + data.y + data.z + data.w);
 
-  #else
-  if (data.x == 1) col += inc;
-  if (data.y == 1) col += inc;
-  if (data.z == 1) col += inc;
-  if (data.w == 1) col += inc;
+    vec4 col = vec4(0.0, 0.0, 0.0, 1.0);
 
-  #endif
+    if (density > 0.0) {
+        // Map 1-4 particles to a bright gradient
+        // Density 1 = Blue, 2 = Green, 3 = Yellow, 4 = White/Red
+        float t = density / 4.0; 
+        
+        // Vibrant Neon/Plasma Gradient
+        col.r = smoothstep(0.5, 1.0, t);
+        col.g = smoothstep(0.0, 0.7, t) - smoothstep(0.8, 1.0, t);
+        col.b = 1.0 - smoothstep(0.5, 1.0, t);
+        col.rgb *= 1.5; // "Glow" boost
+    }
 
-
-  imageStore(imgOutput, id, col);
-  
+    imageStore(imgOutput, id, col);
 }
+
 
 

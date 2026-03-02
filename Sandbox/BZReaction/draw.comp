@@ -12,12 +12,15 @@ uniform int height;
 
 
 void main() {
-    ivec2 pixel_coords = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(imgOutput);
 
-    float dist = distance(vec2(pixel_coords), u_MousePos * vec2(width, height));
+    if (any(greaterThanEqual(id, size))) return;
+
+    float dist = distance(vec2(id), u_MousePos * vec2(width, height));
 
     if (dist <= radius) {
-        imageStore(imgOutput, pixel_coords,
+        imageStore(imgOutput, id,
                     uvec4(1,0,0,0));
     }
 }
