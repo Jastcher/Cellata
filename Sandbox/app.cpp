@@ -19,6 +19,10 @@ int main()
   LangtonsAnt langtonsAnt;
   Mazectric mazectric;
 
+  // Wireworld
+  // Lattice Gas Automata LGA & FHP Models
+  // Lattice gas with gravity?
+
   app.Add(&sandsim);
   app.Add(&conway);
   app.Add(&latticeGas);
