@@ -1,0 +1,39 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba32f, binding = 0) uniform image2D imgInput;
+layout(rgba8, binding = 1) uniform image2D imgOutput;
+
+uniform int maxIt;
+
+vec3 getGradientColor(float it, float maxIt) {
+    if (it >= maxIt) return vec3(0.0, 0.0, 0.0);
+    
+    float t = it / maxIt;
+    
+    vec3 color1 = vec3(0.0, 0.0, 0.2); // Dark Blue
+    vec3 color2 = vec3(0.0, 0.5, 1.0); // Sky Blue
+    vec3 color3 = vec3(1.0, 1.0, 1.0); // White
+    vec3 color4 = vec3(1.0, 0.6, 0.0); // Orange
+
+    if (t < 0.33) return mix(color1, color2, t / 0.33);
+    if (t < 0.66) return mix(color2, color3, (t - 0.33) / 0.33);
+    return mix(color3, color4, (t - 0.66) / 0.34);
+}
+
+void main() {
+    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(imgInput);
+    if (any(greaterThanEqual(id, size))) return;
+
+    float it = imageLoad(imgInput, id).z;
+
+    vec3 col = getGradientColor(it, maxIt);
+
+    imageStore(imgOutput, id, vec4(col, 1.0f));
+
+  
+}
+
+

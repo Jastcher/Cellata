@@ -3,9 +3,17 @@
 #include <iostream>
 #include <memory>
 #include <sched.h>
+#include "glm/common.hpp"
 #include "imgui/imgui.h"
 #include "imgui_internal.h"
 #include "simulator.h"
+
+#define TOOLTIP(x)            \
+  if (ImGui::IsItemHovered()) \
+  {                           \
+    ImGui::SetTooltip(x);     \
+  }
+
 static inline void StartFrame()
 {
   ImGui_ImplOpenGL3_NewFrame();
@@ -32,6 +40,10 @@ UI::UI(std::shared_ptr<Window> _window, std::shared_ptr<Simulator> _simulator) :
 
   ImGui_ImplGlfw_InitForOpenGL(window->window, true);
   ImGui_ImplOpenGL3_Init("#version 330");
+
+  // This includes a massive amount of symbols and characters
+  io.Fonts->AddFontFromFileTTF("../Engine/vendor/fonts/Agave.ttf", 12.0f, nullptr, io.Fonts->GetGlyphRangesDefault());
+  io.Fonts->Build();
 }
 
 UI::~UI()
@@ -41,7 +53,9 @@ UI::~UI()
   ImGui::DestroyContext();
 }
 
-static inline void MainWindow()
+static inline void AppBar(UI *UI);
+
+static inline void MainWindow(UI *UI)
 {
   ImGuiViewport *viewport = ImGui::GetMainViewport();
   ImGui::SetNextWindowPos(viewport->WorkPos);
@@ -59,38 +73,123 @@ static inline void MainWindow()
   ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 
   ImGui::Begin("MainWindow", nullptr, host_window_flags);
+
+  AppBar(UI);
+
   ImGui::PopStyleVar(3);
   ImGuiID dockspace_id = ImGui::GetID("DockSpace");
   ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags, nullptr);
   ImGui::End();
 }
 
+static inline void AppBar(UI *UI)
+{
+  float appBarHeight = 30.0f;
+
+  ImGui::BeginChild("AppBar", ImVec2(0, appBarHeight), true,
+                    ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+
+  float windowWidth = ImGui::GetWindowSize().x;
+  float buttonWidth = 60.0f;
+  float spacing     = ImGui::GetStyle().ItemSpacing.x;
+
+  float availHeight = ImGui::GetContentRegionAvail().y;
+
+  // two buttons and one spacing in between
+  float groupWidth = (buttonWidth * 2) + (spacing * 1);
+
+  // --- CENTERED SECTION ---
+  // Set the cursor to (Half Window Width - Half Group Width)
+  ImGui::SetCursorPosX((windowWidth) * 0.5f - 30);
+
+  bool &isSimRunning = UI->simulator->isSimRunning;
+  ImVec4 buttonC;
+  ImVec4 buttonHoveredC;
+  ImVec4 buttonActiveC;
+  if (isSimRunning == true)
+  {
+    buttonC        = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
+    buttonHoveredC = ImVec4(0.8f, 0.0f, 0.0f, 1.0f);
+    buttonActiveC  = ImVec4(1.0f, 0.2f, 0.2f, 1.0f);
+  }
+  else
+  {
+    buttonC        = ImVec4(0.0f, 1.0f, 0.0f, 1.0f);
+    buttonHoveredC = ImVec4(0.0f, 0.8f, 0.0f, 1.0f);
+    buttonActiveC  = ImVec4(0.2f, 1.0f, 0.2f, 1.0f);
+  }
+
+  ImGui::SetWindowFontScale(2.0f);
+
+  if (ImGui::Button("󰓗", ImVec2(30, availHeight)))
+  {
+    UI->simulator->stepOnce = true;
+  }
+  TOOLTIP("Step once, Keybind: up arrow");
+
+  ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0, 0, 0, 1));      // BLACK TEXT
+  ImGui::PushStyleColor(ImGuiCol_Button, buttonC);               // Idle state
+  ImGui::PushStyleColor(ImGuiCol_ButtonHovered, buttonHoveredC); // Mouse over
+  ImGui::PushStyleColor(ImGuiCol_ButtonActive, buttonActiveC);   // While clicking
+  ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 5.0f);
+
+  ImGui::SameLine();
+  if (ImGui::Button(isSimRunning ? "" : "", ImVec2(60, availHeight))) isSimRunning = !isSimRunning;
+  ImGui::PopStyleColor(4);
+  ImGui::PopStyleVar(1);
+
+  TOOLTIP(isSimRunning ? "Stop simulation, Keybind: space" : "Play simulation, Keybind: space");
+
+  float &simFPS = UI->simulator->automaton->simFPS;
+  ImGui::SameLine();
+  if (ImGui::Button("", ImVec2(30, availHeight))) simFPS = glm::max(simFPS * 0.5f, 0.100f);
+  TOOLTIP("Decrease Sim FPS, Keybind: left arrow");
+
+  ImGui::SameLine(0.0f, 0.0f);
+  if (ImGui::Button("󰑮", ImVec2(30, availHeight))) simFPS *= 1.5f;
+  TOOLTIP("Increase Sim FPS, Keybind: right arrow");
+
+  ImGui::SetWindowFontScale(1.0f);
+  // --- RIGHT-ALIGNED SECTION ---
+  // We want the FPS selector to stay on the far right
+  float selectorWidth = 120.0f;
+  ImGui::SameLine(windowWidth - selectorWidth - spacing);
+
+  static int fps_limit      = 60;
+  const char *fps_options[] = {"30 FPS", "60 FPS", "120 FPS", "Unlimited"};
+  ImGui::SetNextItemWidth(selectorWidth);
+  ImGui::Combo("##FPS", &fps_limit, fps_options, IM_ARRAYSIZE(fps_options));
+
+  ImGui::EndChild();
+}
+
 static inline void ViewportWindow(UI *UI)
 {
   ImGui::Begin("Viewport");
 
+  float &simFPS = UI->simulator->automaton->simFPS;
   // keybinds
+  if (ImGui::IsWindowHovered() && ImGui::IsKeyPressed(ImGuiKey_UpArrow))
+  {
+    UI->simulator->stepOnce = true;
+  }
   if (ImGui::IsWindowHovered() && ImGui::IsKeyPressed(ImGuiKey_Space))
   {
     UI->simulator->isSimRunning = !UI->simulator->isSimRunning;
-    ImGui::SetKeyOwner(ImGuiKey_Space, ImGui::GetID("Viewport"));
   }
   if (ImGui::IsWindowHovered() && ImGui::IsKeyPressed(ImGuiKey_RightArrow))
   {
-    UI->simulator->automaton->simFPS += 5;
-    ImGui::SetKeyOwner(ImGuiKey_RightArrow, ImGui::GetID("Viewport"));
+    simFPS *= 1.5f;
   }
   if (ImGui::IsWindowHovered() && ImGui::IsKeyPressed(ImGuiKey_LeftArrow))
   {
-
-    UI->simulator->automaton->simFPS =
-        std::clamp(UI->simulator->automaton->simFPS - 5, 0.0f, UI->simulator->automaton->simFPS);
-    ImGui::SetKeyOwner(ImGuiKey_LeftArrow, ImGui::GetID("Viewport"));
+    simFPS = glm::max(simFPS * 0.5f, 0.100f);
   }
 
   // tab selection
   if (ImGui::BeginTabBar("Automata"))
   {
+    ImGui::TabItemButton("um hi ig");
     for (auto &automaton : UI->simulator->automata)
     {
       if (ImGui::BeginTabItem(automaton->label))
@@ -153,6 +252,14 @@ static inline void ViewportWindow(UI *UI)
   ImGui::Image((ImTextureID)(uintptr_t)UI->simulator->GetRenderDataTextureID(), currentSize, ImVec2(u0, v0),
                ImVec2(u1, v1));
 
+  if (UI->simulator->automaton->tooltipEnable)
+  {
+    if (ImGui::IsItemHovered())
+    {
+      ImGui::SetTooltip("%s", UI->simulator->automaton->GetTooltip(UI->viewportMouseX, UI->viewportMouseY).c_str());
+    }
+  }
+
   // 6. MOUSE INTERACTION & COORDINATE MAPPING
   UI->viewportFocused = ImGui::IsItemHovered();
   UI->isMouseDown     = (UI->viewportFocused && ImGui::IsMouseDown(ImGuiMouseButton_Left));
@@ -193,9 +300,6 @@ static inline void ControlWindow(UI *UI)
 {
   ImGui::Begin("Control");
 
-  ImGui::Checkbox("Play", &UI->simulator->isSimRunning);
-  if (ImGui::Button("Step")) UI->simulator->stepOnce = true;
-
   if (ImGui::Checkbox("Dynamic resize", &UI->simulator->automaton->dynamicResize))
     UI->simulator->Resize(UI->viewportSize.x, UI->viewportSize.y);
 
@@ -216,7 +320,7 @@ void UI::Render()
   ImGui::SetNextWindowPos(ImVec2(0, 0));
   // ImGui::ShowDemoWindow();
 
-  MainWindow();
+  MainWindow(this);
   ViewportWindow(this);
   ControlWindow(this);
   InfoWindow(this);

@@ -1,0 +1,60 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+layout(rgba8ui, binding = 0) uniform uimage2D pixelData;
+layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
+
+
+void main() {
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+  ivec2 size = imageSize(pixelData);
+
+  if (any(greaterThanEqual(id, size))) return;
+
+  uint empty = 0;
+  uint head = 1;
+  uint tail = 2;
+  uint conductor = 3;
+
+  uint current = imageLoad(pixelData, id).x;
+  uint left = imageLoad(pixelData, id + ivec2(-1,0)).x;
+  uint right= imageLoad(pixelData, id + ivec2(1,0)).x;
+  uint up = imageLoad(pixelData, id + ivec2(0,1)).x;
+  uint down = imageLoad(pixelData, id + ivec2(0,-1)).x;
+  uint up_left = imageLoad(pixelData, id + ivec2(-1,1)).x;
+  uint up_right = imageLoad(pixelData, id + ivec2(1,1)).x;
+  uint down_left = imageLoad(pixelData, id + ivec2(-1,-1)).x;
+  uint down_right = imageLoad(pixelData, id + ivec2(1,-1)).x;
+
+  uint neighborHeads = uint(left == head) + uint(right == head) + uint(up == head) + uint(down == head) +
+    uint(up_left == head) + uint(up_right == head) + uint(down_left == head) + uint(down_right == head);
+
+  uint next = 0;
+
+
+
+  if (current == head) {
+    next = tail;
+
+  } 
+  else if(current == tail) {
+    next = conductor;
+
+  }
+  else if (current == conductor) {
+    next = conductor;
+    if (neighborHeads >= 1) {
+      next = head;
+    }
+
+  }
+
+
+
+
+  imageStore(pixelDataNext, id, uvec4(next,0,0,0));
+
+}
+
+

@@ -1,0 +1,38 @@
+#version 460 core
+
+layout(local_size_x = 8, local_size_y = 8) in;
+
+// Changed to rgba32f to support values outside 0.0-1.0 and high precision
+layout(rgba32f, binding = 0) uniform image2D pixelData;
+layout(rgba32f, binding = 1) uniform image2D pixelDataNext;
+
+uniform int maxIt;
+
+void main() {
+    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(pixelData);
+
+    if (any(greaterThanEqual(id, size))) return;
+
+    // Map pixel (0 to size) to complex plane constants
+    vec2 pos;
+    pos.x = (float(id.x) / size.x) * 2.47f - 2.0f;
+    pos.y = (float(id.y) / size.y) * 2.24f - 1.12f;
+
+    // Single memory read
+    vec4 data = imageLoad(pixelData, id);
+    float x = data.x;
+    float y = data.y;
+    float it = data.z;
+
+    // Fractal logic (z^2 + c)
+    if (x*x + y*y < 4.0 && int(it) < maxIt) {
+        float xtemp = x*x - y*y + pos.x;
+        y = 2.0 * x * y + pos.y;
+        x = xtemp;
+        it += 1.0; 
+    }
+
+    // Store updated state
+    imageStore(pixelDataNext, id, vec4(x, y, it, 0.0));
+}

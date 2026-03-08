@@ -45,6 +45,8 @@ bool Window::Init()
   userPtr.props = &m_Properties;
   glfwSetWindowUserPointer(window, &userPtr);
 
+  glfwSwapInterval(1);
+
   return 1;
 }
 

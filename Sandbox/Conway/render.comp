@@ -7,7 +7,9 @@ layout(rgba8, binding = 1) uniform image2D imgOutput;
 
 
 void main() {
-    ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+  ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+  ivec2 size = imageSize(imgInput);
+  if (any(greaterThanEqual(id, size))) return;
 
     uvec4 data = imageLoad(imgInput, id);
 

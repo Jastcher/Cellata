@@ -11,7 +11,8 @@ public:
 
   GLuint id = 0;
 
-  int format = GL_RGBA8UI;
+  GLuint format   = GL_RGBA8UI;
+  GLuint dataType = GL_UNSIGNED_BYTE;
 
   void Init(int width, int height);
   void Resize(int width, int height);

@@ -11,6 +11,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Collect all source files inside the Engine directory
 file(GLOB_RECURSE ENGINE_SRC "Engine/*.cpp" "Engine/*.c")
 
+add_compile_definitions(IMGUI_USE_WCHAR32)
 add_library(Engine STATIC ${ENGINE_SRC})
 
 target_include_directories(Engine PUBLIC 

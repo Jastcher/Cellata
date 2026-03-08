@@ -1,6 +1,7 @@
 
 #include "computeShader.h"
 #include "dataTexture.h"
+#include "window.h"
 #include <functional>
 #include <variant>
 
@@ -24,6 +25,7 @@ public:
   virtual void Resize(int width, int height);
   virtual void DrawGPU(float mouseX, float mouseY);
   virtual void DrawCPU(float mouseX, float mouseY);
+  virtual std::string GetTooltip(float mouseX, float mouseY);
 
   GLuint GetRenderDataTextureID();
 
@@ -37,6 +39,8 @@ public:
   bool dynamicResize = false;
 
   int width, height;
+
+  bool tooltipEnable = false;
 
   float simFPS = 10.0f;
 

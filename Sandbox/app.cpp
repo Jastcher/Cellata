@@ -1,4 +1,5 @@
 
+#include "Wireworld/wireworld.h"
 #include "application.h"
 #include "Sandsim/sandsim.h"
 #include "Conway/conway.h"
@@ -6,6 +7,8 @@
 #include "Langtons ant/langtonsAnt.h"
 #include "Mazectric/mazectric.h"
 #include "BZReaction/BZReaction.h"
+#include "Wireworld/wireworld.h"
+#include "Mandelbrot/mandelbrot.h"
 
 int main()
 {
@@ -18,17 +21,20 @@ int main()
   LatticeGas latticeGas;
   LangtonsAnt langtonsAnt;
   Mazectric mazectric;
+  Wireworld wireworld;
+  Mandelbrot mandelbrot;
 
-  // Wireworld
   // Lattice Gas Automata LGA & FHP Models
   // Lattice gas with gravity?
 
+  app.Add(&mandelbrot);
   app.Add(&sandsim);
   app.Add(&conway);
   app.Add(&latticeGas);
   app.Add(&langtonsAnt);
   app.Add(&mazectric);
   app.Add(&bzReaction);
+  app.Add(&wireworld);
 
   app.Run();
 

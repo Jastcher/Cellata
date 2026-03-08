@@ -1,11 +1,13 @@
 #include "automaton.h"
 #include "dataTexture.h"
 #include "imgui.h"
+#include "window.h"
 #include <functional>
 
 Automaton::Automaton()
 {
   m_RenderDataTexture.format = GL_RGBA8;
+  m_DataTexture.format       = GL_RGBA8UI;
 }
 
 Automaton::~Automaton()
@@ -118,4 +120,9 @@ void Automaton::UI()
 GLuint Automaton::GetRenderDataTextureID()
 {
   return m_RenderDataTexture.id;
+}
+
+std::string Automaton::GetTooltip(float mouseX, float mouseY)
+{
+  return "test";
 }

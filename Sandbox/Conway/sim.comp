@@ -8,6 +8,8 @@ layout(rgba8ui, binding = 1) uniform uimage2D pixelDataNext;
 
 void main() {
   ivec2 id = ivec2(gl_GlobalInvocationID.xy);
+  ivec2 size = imageSize(pixelData);
+  if (any(greaterThanEqual(id, size))) return;
 
   uint current = imageLoad(pixelData, id).x;
   uint left = imageLoad(pixelData, id + ivec2(-1,0)).x;
